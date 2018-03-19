@@ -14,22 +14,32 @@ displayText = Name
   # lint:ok
 
 IP = subprocess.check_output(["hostname", "-I"])
-
-
+refresh = True
+wrefresh = True
 
 while(True):
     if lcd.is_pressed(LCD.SELECT):
-        lcd.clear()
-        lcd.message(displayText + "\n")
-        lcd.set_backlight(1)
-        lcd.message("Hello World\n")
-        time.sleep(0.5)
+        if wrefresh:
+            lcd.clear()
+            lcd.set_backlight(1)
+            lcd.message("Hello World\n")
+            refresh = True
+            wrefresh = False
+
+
     else:
-        lcd.set_backlight(1)
-        lcd.message(displayText + "\n")
-        lcd.message(IP)
+        if refresh:
+            lcd.clear()
+            lcd.set_backlight(1)
+            lcd.message(displayText + "\n")
+            lcd.message(IP)
+            refresh = False
+            wrefresh = True
         time.sleep(0.5)
-        lcd.clear()
+
+
+
+
 
 
 
