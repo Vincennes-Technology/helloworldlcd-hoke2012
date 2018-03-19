@@ -15,21 +15,22 @@ displayText = Name
 
 IP = subprocess.check_output(["hostname", "-I"])
 
-lcd.clear()
-lcd.message("displayText\n")
+
 
 while(True):
     if lcd.is_pressed(LCD.SELECT):
         lcd.clear()
-        lcd.message("displayText\n")
+        lcd.message(displayText + "\n")
         lcd.set_backlight(1)
         lcd.message("Hello World\n")
         time.sleep(0.5)
     else:
         lcd.set_backlight(1)
-        lcd.message(displayText)
+        lcd.message(displayText + "\n")
         lcd.message(IP)
         time.sleep(0.5)
         lcd.clear()
+
+
 
 
